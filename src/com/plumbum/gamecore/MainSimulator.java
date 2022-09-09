@@ -2,6 +2,8 @@ package com.plumbum.gamecore;
 
 import com.plumbum.gamersai.StupidBot;
 import java.awt.*;
+import java.sql.Array;
+import java.util.Arrays;
 
 public class MainSimulator {
 
@@ -13,12 +15,19 @@ public class MainSimulator {
     IBot firstAI;
     IBot secondAI;
 
+    public MainSimulator(int commandSize, int mapHeight, int mapWidth) {
+        map = new Array<Array<int>>() ;
+    }
+
     public void initWorld(int commandSize, int mapHeight, int mapWidth) {
 
         firstAI = new StupidBot();
         secondAI = new StupidBot();
     }
+    public void displaySimulation () {
+        System.out.println(Arrays.toString(map));
 
+    }
     public void startSimulation(int duration) {
 
         Point з = new Point(1, 2);
@@ -40,6 +49,7 @@ public class MainSimulator {
                         // и т. д.
                         break;
                 }
+
             }
 
             for (int j = 0; j < secondCommand.length; j++) {
@@ -57,6 +67,7 @@ public class MainSimulator {
                         break;
                 }
             }
+
         }
     }
 }
