@@ -15,8 +15,10 @@ public class MainSimulator {
     IBot firstAI;
     IBot secondAI;
 
-    public MainSimulator(int commandSize, int mapHeight, int mapWidth) {
-        map = new Array<Array<int>>() ;
+    public MainSimulator(int commandSize, int mapHeightY, int mapWidthX) {
+        map = new int[mapWidthX][mapHeightY];
+        firstCommand = new Point[commandSize];
+        secondCommand = new Point[commandSize];
     }
 
     public void initWorld(int commandSize, int mapHeight, int mapWidth) {
