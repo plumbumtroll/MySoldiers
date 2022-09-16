@@ -2,18 +2,16 @@ package com.plumbum.gamecore;
 
 import com.plumbum.gamersai.StupidBot;
 import java.awt.*;
-import java.sql.Array;
 import java.util.Arrays;
 
 public class MainSimulator {
 
+    int viewRadius;
+
     Cell[][] map;
     Warrior[] population;
 
-    IBot firstAI;
-    IBot secondAI;
-
-    public MainSimulator(int commandSize, int mapWidthX, int mapHeightY) {
+    public MainSimulator(int commandSize, int mapWidthX, int mapHeightY, int viewRadius) {
         map = new Cell[mapWidthX][mapHeightY];
         for (int x = 0; x < mapWidthX; x++) {
             for (int y = 0; y < mapHeightY; y++) {
@@ -47,6 +45,8 @@ public class MainSimulator {
             for (int j = 0; j < population.length; j++) {
 
                 IBot behaviour = population[j].getBehaviour();
+                // todo: реализовать ограниченный обзор для каждого челика и передачу этой информации в объект behaviour
+
                 int result = behaviour.toDoMove(map);
 
                 switch (result) {
