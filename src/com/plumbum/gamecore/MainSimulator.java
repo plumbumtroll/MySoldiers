@@ -7,30 +7,31 @@ import java.util.Arrays;
 
 public class MainSimulator {
 
-    int[][] map;
-
-    Point[] firstCommand;
-    Point[] secondCommand;
+    Cell[][] map;
+    Warrior[] population;
 
     IBot firstAI;
     IBot secondAI;
 
     public MainSimulator(int commandSize, int mapWidthX, int mapHeightY) {
-        map = new int[mapWidthX][mapHeightY];
-        firstCommand = new Point[commandSize];
-        secondCommand = new Point[commandSize];
-
-        for (int i = 0; i < commandSize; i++ ) {
-            firstCommand[i] = new Point();
-            secondCommand[i] = new Point(mapWidthX-1, mapHeightY-1);
+        map = new Cell[mapWidthX][mapHeightY];
+        for (int x = 0; x < mapWidthX; x++) {
+            for (int y = 0; y < mapHeightY; y++) {
+                map[x][y] = new Cell();
+            }
         }
-    }
-
-    public void initWorld(int commandSize, int mapHeight, int mapWidth) {
+        population = new Warrior[commandSize * 2];
+        for (int i = 0; i < (commandSize - 1); i++) {
+            population[i] = new Warrior ('H');
+        }
+        for (int i = commandSize; i < (commandSize * 2 - 1); i++) {
+            population[i] = new Warrior ('R');
+        }
 
         firstAI = new StupidBot();
         secondAI = new StupidBot();
     }
+
     public void displaySimulation () {
         System.out.println(Arrays.toString(map));
 
