@@ -2,8 +2,8 @@ package com.plumbum.gamecore.actions;
 
 import com.plumbum.gamecore.Cell;
 
-import java.awt.*;
+public class Hit extends Action{
 
-public abstract class Action {
+    Cell Target;
 
 }
