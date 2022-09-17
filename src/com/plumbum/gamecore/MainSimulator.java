@@ -42,8 +42,7 @@ public class MainSimulator {
             }
         }
 
-        p.x = getWidth() - 1;
-        p.y = getHeight() - 1;
+        p.move(getWidth() - 1, getHeight() - 1);
         for (int i = 0; i < commandSize; i++) {
             Warrior currentWarrior = population[i+commandSize];
             map[p.x][p.y].placeWarrior(currentWarrior);
@@ -55,17 +54,29 @@ public class MainSimulator {
         }
     }
 
-    public int getWidth () {
+    public int getWidth() {
         return map.length;
     }
-    public int getHeight () {
+
+    public int getHeight() {
         return map[0].length;
+    }
+
+    public Cell getCell(int x, int y) {
+        if (x < 0 || y < 0 || x >= getWidth() || y >= getHeight())
+            return null;
+
+        return map[x][y];
+    }
+
+    public Cell getCell(Point point) {
+        return this.getCell(point.x, point.y);
     }
 
     public void displaySimulation () {
         for (int y = 0; y < this.getHeight(); y++) {
             for (int x = 0; x < this.getWidth(); x++) {
-                System.out.print(map[x][y]);
+                System.out.print(getCell(x, y));
             }
             System.out.println();
         }
