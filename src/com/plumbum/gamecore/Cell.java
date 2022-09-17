@@ -1,22 +1,18 @@
 package com.plumbum.gamecore;
 
 public class Cell {
-    private Warrior localWarrior;
+    public Warrior localWarrior;
 
     @Override
     public String toString() {
         if (localWarrior == null) {
-            return "*";
+            return ".";
         } else {
             return String.valueOf(localWarrior.commandSymbol);
         }
     }
 
-    public Cell(){
-
-    }
-
-    public void placeWarrior(Warrior placedWarrior){
+    public void placeWarrior(Warrior placedWarrior) {
         localWarrior = placedWarrior;
     }
 }

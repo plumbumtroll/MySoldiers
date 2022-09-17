@@ -1,6 +1,8 @@
 package com.plumbum.gamecore;
 
 import com.plumbum.gamecore.actions.Action;
+import com.plumbum.gamecore.actions.Movement;
+import com.plumbum.gamecore.utils.Operations;
 import com.plumbum.gamersai.StupidBot;
 
 import java.awt.*;
@@ -85,13 +87,33 @@ public class MainSimulator {
     public void startSimulation(int duration) {
 
         for (int i = 0; i < duration; i++) {
+            makeOneTick();
+            this.displaySimulation();
+            System.out.println();
+        }
+    }
 
-            for (Warrior warrior : population) {
-
-                IBot behaviour = warrior.getBehaviour();
+    public void makeOneTick() {
+        for (int x = 0; x < getWidth(); x++) {
+            for (int y = 0; y < getHeight(); y++) {
                 // todo: реализовать ограниченный обзор для каждого челика и передачу этой информации в объект behaviour
+                Warrior warrior = getCell(x, y).localWarrior;
+                if (warrior == null)
+                    continue;
 
-                Action result = behaviour.toDoMove(map);
+                Action result = warrior.behaviour.toDoMove(map);
+
+                Point currentPoint = new Point(x, y);
+
+                if (result instanceof Movement movement) {
+                    Cell targetCell = this.getCell(Operations.addVector(currentPoint, movement.movementVector));
+                    if (targetCell != null && targetCell.localWarrior == null) {
+                        targetCell.placeWarrior(warrior);
+                        this.getCell(x, y).localWarrior = null;
+                    }
+
+                    // todo: реализовать движение с промежуточным буфером поля
+                }
 
                 // todo: обработка хода солдатика
             }
