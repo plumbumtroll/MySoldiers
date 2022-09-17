@@ -2,6 +2,8 @@ package com.plumbum.gamecore;
 
 import com.plumbum.gamersai.StupidBot;
 
+import java.awt.*;
+
 public class MainSimulator {
 
     int viewRadius;
@@ -27,18 +29,41 @@ public class MainSimulator {
         for (int i = commandSize; i < commandSize * 2; i++) {
             population[i] = new Warrior ('R', secondAI);
         }
+
+        Point p = new Point(0, 0);
+        for (int i = 0; i < commandSize; i++) {
+            Warrior currentWarrior = population[i];
+            map[p.x][p.y].placeWarrior(currentWarrior);
+            p.x++;
+            if (p.x >= getWidth()){
+                p.x = 0;
+                p.y++;
+            }
+        }
+
+        p.x = getWidth() - 1;
+        p.y = getHeight() - 1;
+        for (int i = 0; i < commandSize; i++) {
+            Warrior currentWarrior = population[i+commandSize];
+            map[p.x][p.y].placeWarrior(currentWarrior);
+            p.x--;
+            if (p.x < 0){
+                p.x = getWidth() - 1;
+                p.y--;
+            }
+        }
     }
 
     public int getWidth () {
-        return map[0].length;
+        return map.length;
     }
     public int getHeight () {
-        return map.length;
+        return map[0].length;
     }
 
     public void displaySimulation () {
-        for (int y = 0; y < this.getWidth(); y++) {
-            for (int x = 0; x < this.getHeight(); x++) {
+        for (int y = 0; y < this.getHeight(); y++) {
+            for (int x = 0; x < this.getWidth(); x++) {
                 System.out.print(map[x][y]);
             }
             System.out.println();

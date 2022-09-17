@@ -15,4 +15,8 @@ public class Cell {
     public Cell(){
 
     }
+
+    public void placeWarrior(Warrior placedWarrior){
+        localWarrior = placedWarrior;
+    }
 }
