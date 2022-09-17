@@ -1,8 +1,6 @@
 package com.plumbum.gamecore;
 
 import com.plumbum.gamersai.StupidBot;
-import java.awt.*;
-import java.util.Arrays;
 
 public class MainSimulator {
 
@@ -32,10 +30,10 @@ public class MainSimulator {
     }
 
     public int getWidth () {
-        return map.length;
+        return map[0].length;
     }
     public int getHeight () {
-        return map[0].length;
+        return map.length;
     }
 
     public void displaySimulation () {
@@ -51,9 +49,9 @@ public class MainSimulator {
 
         for (int i = 0; i < duration; i++) {
 
-            for (int j = 0; j < population.length; j++) {
+            for (Warrior warrior : population) {
 
-                IBot behaviour = population[j].getBehaviour();
+                IBot behaviour = warrior.getBehaviour();
                 // todo: реализовать ограниченный обзор для каждого челика и передачу этой информации в объект behaviour
 
                 int result = behaviour.toDoMove(map);
