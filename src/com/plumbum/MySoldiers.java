@@ -8,11 +8,7 @@ import java.sql.Array;
 
 public class MySoldiers {
     public static void main(String[] args){
-        MainSimulator newWorld = new MainSimulator(3, 3, 3, 2);
-//        newWorld.startSimulation(20);
-
-        System.out.println("abyrvalg");
-        Warrior StupidDestroyer = new Warrior('A', new StupidBot());
+        MainSimulator newWorld = new MainSimulator(34, 20, 10, 2);
 
         newWorld.displaySimulation();
     }

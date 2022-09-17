@@ -1,5 +1,6 @@
 package com.plumbum.gamecore;
 
+import com.plumbum.gamecore.actions.Action;
 import com.plumbum.gamersai.StupidBot;
 
 import java.awt.*;
@@ -79,19 +80,9 @@ public class MainSimulator {
                 IBot behaviour = warrior.getBehaviour();
                 // todo: реализовать ограниченный обзор для каждого челика и передачу этой информации в объект behaviour
 
-                int result = behaviour.toDoMove(map);
+                Action result = behaviour.toDoMove(map);
 
-                switch (result) {
-                    case (0):
-                        // логика обработки того, как солдатик стоит на месте
-                        break;
-                    case (1):
-                        // и т. д.
-                        break;
-                    case (2):
-                        // и т. д.
-                        break;
-                }
+                // todo: обработка хода солдатика
             }
         }
     }

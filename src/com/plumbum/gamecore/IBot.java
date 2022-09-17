@@ -1,6 +1,8 @@
 package com.plumbum.gamecore;
 
+import com.plumbum.gamecore.actions.Action;
+
 public interface IBot {
 
-    int toDoMove(Cell[][] information);
+    Action toDoMove(Cell[][] information);
 }
