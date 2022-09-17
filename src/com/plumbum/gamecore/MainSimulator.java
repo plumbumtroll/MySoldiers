@@ -31,14 +31,23 @@ public class MainSimulator {
         }
     }
 
-    public void displaySimulation () {
-        System.out.println(Arrays.toString(map));
+    public int getWidth () {
+        return map.length;
+    }
+    public int getHeight () {
+        return map[0].length;
+    }
 
+    public void displaySimulation () {
+        for (int y = 0; y < this.getWidth(); y++) {
+            for (int x = 0; x < this.getHeight(); x++) {
+                System.out.print(map[x][y]);
+            }
+            System.out.println();
+        }
     }
 
     public void startSimulation(int duration) {
-
-        Point з = new Point(1, 2);
 
         for (int i = 0; i < duration; i++) {
 
